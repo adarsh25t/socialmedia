@@ -5,7 +5,6 @@ import ScreenWrapper from '../components/ScreenWrapper'
 import Loading from '../components/Loading'
 export default function index() {
 
-  const router = useRouter()
   return (
     <ScreenWrapper>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

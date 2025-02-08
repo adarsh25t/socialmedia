@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from "../context/AuthContext"
 import { View } from "react-native"
 import { useEffect } from "react"
 import { supabase } from "../lib/superbase"
+import { getUserData } from "../services/userService"
 
 
 const _layout = () => {
@@ -15,16 +16,14 @@ const _layout = () => {
 
 const MainLayout = () => {
 
-    const { setAuth } = useAuth();
+    const { setAuth, setUserData } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
         supabase.auth.onAuthStateChange((_event, session) => {
-            console.log('====================================');
-            console.log(session);
-            console.log('====================================');
             if (session) {
                 setAuth(session?.user);
+                updateUserData(session?.user?.id);
                 router.replace('home');
             }
             else {
@@ -33,6 +32,14 @@ const MainLayout = () => {
             }
         })
     }, [])
+
+    const updateUserData = async (userId) => {
+        const response = await getUserData(userId);
+        if(response.success) {
+            setUserData(response.data);
+        }
+        
+    }
 
     return (
         <Stack
