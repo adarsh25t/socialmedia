@@ -1,0 +1,2 @@
+export const superbaseurl = "https://ecdbtevxuzqvolredlyx.supabase.co"
+export const superbaseanonkey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjZGJ0ZXZ4dXpxdm9scmVkbHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkwMTAwNjYsImV4cCI6MjA1NDU4NjA2Nn0.NgNiWw-UDVBQzVk8nW85PESaQknYWS0Ba2pQ2gtb5BM"
