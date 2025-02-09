@@ -7,17 +7,13 @@ import { hp, wp } from '../../helpers/common'
 import { theme } from '../../constants/theme'
 import Icon from '../../assets/icons'
 import { useRouter } from 'expo-router'
+import Avatar from '../../components/Avatar'
 
 const home = () => {
 
     const { user } = useAuth()
     const router = useRouter()
-    const onLogout = async () => {
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-            Alert.error("Logout", "Error signing out!")
-        }
-    }
+
     return (
         <ScreenWrapper>
             <View style={styles.container}>
@@ -42,17 +38,16 @@ const home = () => {
                             />
                         </Pressable>
                         <Pressable onPress={() => router.push('profile')}>
-                            <Icon
-                                name={'user'}
-                                size={hp(3.2)}
-                                color={theme.colors.text}
-                                strokeWidth={2}
+                            <Avatar 
+                                uri={user?.image}
+                                size={hp(4.3)}
+                                rounded={theme.radius.sm}
+                                style={{borderWidth:2}}
                             />
                         </Pressable>
                     </View>
                 </View>
             </View>
-            <Button title='logout' onPress={onLogout} />
         </ScreenWrapper>
     )
 }

@@ -29,3 +29,31 @@ export const getUserData = async (userId) => {
         }
     }
 }
+
+export const updateUserData = async (userId,data) => {
+
+    try {
+
+        const { error } = await supabase
+            .from('users')
+            .update(data)
+            .eq('id', userId)
+
+        if (error) {
+            return {
+                success: false,
+                message: error.message,
+            }
+        }
+
+        return {
+            success: true
+        }
+
+    } catch (error) {
+        return {
+            success: false,
+            message: error.message,
+        }
+    }
+}
