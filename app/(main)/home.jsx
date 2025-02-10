@@ -1,5 +1,5 @@
 import { Alert, Button, Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ScreenWrapper from '../../components/ScreenWrapper'
 import { supabase } from '../../lib/superbase'
 import { useAuth } from '../../context/AuthContext'
@@ -8,11 +8,25 @@ import { theme } from '../../constants/theme'
 import Icon from '../../assets/icons'
 import { useRouter } from 'expo-router'
 import Avatar from '../../components/Avatar'
-
+import { fetchPosts } from '../../services/postSwervice'
+let limit = 10
 const home = () => {
 
-    const { user } = useAuth()
-    const router = useRouter()
+    const { user } = useAuth();
+    const router = useRouter();
+
+    const [posts,setPosts] = useState([]);
+
+    useEffect(() => {
+        getPosts()
+    },[])
+
+    const getPosts = async () => {
+        //* call the api
+        limit = limit + 10;
+        const res = await fetchPosts(limit);
+        console.log(res);
+    }
 
     return (
         <ScreenWrapper>
